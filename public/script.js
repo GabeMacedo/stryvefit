@@ -1,4 +1,4 @@
- document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const pagina = document.body.dataset.pagina || "";
 
   const ROTAS = {
@@ -11,18 +11,56 @@
     gestilovida: "Oferta-premium-stryvefit-html.html"
   };
 
+  const CHAVES_QUESTIONARIO = [
+    "nome",
+    "idade",
+    "sexo",
+    "peso",
+    "altura",
+    "imc",
+    "objetivo",
+    "diasTreino",
+    "lesao",
+    "dor",
+    "limitacao",
+    "cirurgia",
+    "lesaoDetalhe",
+    "dorDetalhe",
+    "limitacaoDetalhe",
+    "cirurgiaDetalhe",
+    "localTreino",
+    "nivelTreino",
+    "alimentacaoAtual",
+    "refeicoesDia",
+    "sono",
+    "estresse",
+    "rotina",
+    "questionarioEnviado"
+  ];
+
   function salvar(chave, valor) {
-    localStorage.setItem(chave, JSON.stringify(valor));
+    try {
+      localStorage.setItem(chave, JSON.stringify(valor));
+    } catch (erro) {
+      console.error("Error saving data:", erro);
+    }
   }
 
   function pegar(chave, fallback = "") {
-    const valor = localStorage.getItem(chave);
-    if (valor === null) return fallback;
-
     try {
-      return JSON.parse(valor);
+      const valor = localStorage.getItem(chave);
+
+      if (valor === null || valor === undefined || valor === "") {
+        return fallback;
+      }
+
+      try {
+        return JSON.parse(valor);
+      } catch {
+        return valor;
+      }
     } catch {
-      return valor;
+      return fallback;
     }
   }
 
@@ -32,12 +70,23 @@
   }
 
   function normalizar(texto) {
-    return String(texto || "").trim().toLowerCase();
+    return String(texto || "")
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function valorBotao(botao) {
+    return botao.dataset.value || botao.textContent.trim();
   }
 
   function marcarAtivo(opcoes, valor) {
+    if (!opcoes || !opcoes.length) return;
+
     opcoes.forEach((opcao) => {
-      const valorOpcao = opcao.dataset.value || opcao.textContent.trim();
+      const valorOpcao = valorBotao(opcao);
+
       if (String(valorOpcao) === String(valor)) {
         opcao.classList.add("ativo");
       } else {
@@ -47,57 +96,41 @@
   }
 
   function ativarSelecao(opcoes, callback) {
+    if (!opcoes || !opcoes.length) return;
+
     opcoes.forEach((opcao) => {
       opcao.addEventListener("click", () => {
         opcoes.forEach((item) => item.classList.remove("ativo"));
         opcao.classList.add("ativo");
 
-        const valor = opcao.dataset.value || opcao.textContent.trim();
-        callback(valor, opcao);
+        const valor = valorBotao(opcao);
+
+        if (typeof callback === "function") {
+          callback(valor, opcao);
+        }
       });
     });
   }
 
   function limparQuestionario() {
-    const chaves = [
-      "nome",
-      "idade",
-      "sexo",
-      "peso",
-      "altura",
-      "imc",
-      "objetivo",
-      "diasTreino",
-      "lesao",
-      "dor",
-      "limitacao",
-      "cirurgia",
-      "lesaoDetalhe",
-      "dorDetalhe",
-      "limitacaoDetalhe",
-      "cirurgiaDetalhe",
-      "localTreino",
-      "nivelTreino",
-      "alimentacaoAtual",
-      "refeicoesDia",
-      "sono",
-      "estresse",
-      "rotina",
-      "questionarioEnviado"
-    ];
+    CHAVES_QUESTIONARIO.forEach((chave) => {
+      localStorage.removeItem(chave);
+    });
+  }
 
-    chaves.forEach((chave) => localStorage.removeItem(chave));
+  function mostrarErro(mensagem) {
+    alert(mensagem);
   }
 
   function configurarPaginaIndex() {
     const btnCriarFicha = document.getElementById("btnCriarFicha");
 
-    if (btnCriarFicha) {
-      btnCriarFicha.addEventListener("click", () => {
-        limparQuestionario();
-        irPara(ROTAS.index);
-      });
-    }
+    if (!btnCriarFicha) return;
+
+    btnCriarFicha.addEventListener("click", () => {
+      limparQuestionario();
+      irPara(ROTAS.index);
+    });
   }
 
   function configurarPaginaFicha() {
@@ -114,46 +147,56 @@
     if (peso) peso.value = pegar("peso", "");
     if (altura) altura.value = pegar("altura", "");
 
-    if (btnContinuarFicha) {
-      btnContinuarFicha.addEventListener("click", () => {
-        const nomeValor = nome?.value.trim() || "";
-        const idadeValor = idade?.value.trim() || "";
-        const sexoValor = sexo?.value || "";
-        const pesoValor = peso?.value.trim() || "";
-        const alturaValor = altura?.value.trim() || "";
+    if (!btnContinuarFicha) return;
 
-        if (!nomeValor || !idadeValor || !sexoValor || !pesoValor || !alturaValor) {
-          alert("Preencha todos os campos.");
-          return;
-        }
+    btnContinuarFicha.addEventListener("click", () => {
+      const nomeValor = nome?.value.trim() || "";
+      const idadeValor = idade?.value.trim() || "";
+      const sexoValor = sexo?.value || "";
+      const pesoValor = peso?.value.trim() || "";
+      const alturaValor = altura?.value.trim() || "";
 
-        const idadeNumero = Number(idadeValor);
-        const pesoNumero = Number(pesoValor);
-        const alturaNumero = Number(alturaValor);
+      if (!nomeValor || !idadeValor || !sexoValor || !pesoValor || !alturaValor) {
+        mostrarErro("Please fill in all fields.");
+        return;
+      }
 
-        if (!idadeNumero || !pesoNumero || !alturaNumero) {
-          alert("Preencha idade, peso e altura corretamente.");
-          return;
-        }
+      const idadeNumero = Number(idadeValor);
+      const pesoNumero = Number(pesoValor);
+      const alturaNumero = Number(alturaValor);
 
-        if (alturaNumero < 100 || alturaNumero > 250) {
-          alert("Digite a altura em centímetros. Exemplo: 175");
-          return;
-        }
+      if (!idadeNumero || !pesoNumero || !alturaNumero) {
+        mostrarErro("Please enter your age, weight, and height correctly.");
+        return;
+      }
 
-        const alturaM = alturaNumero / 100;
-        const imc = (pesoNumero / (alturaM * alturaM)).toFixed(1);
+      if (idadeNumero < 10 || idadeNumero > 100) {
+        mostrarErro("Please enter a valid age.");
+        return;
+      }
 
-        salvar("nome", nomeValor);
-        salvar("idade", idadeValor);
-        salvar("sexo", sexoValor);
-        salvar("peso", pesoValor);
-        salvar("altura", alturaValor);
-        salvar("imc", imc);
+      if (pesoNumero < 20 || pesoNumero > 300) {
+        mostrarErro("Please enter a valid weight in kg.");
+        return;
+      }
 
-        irPara(ROTAS.bficha);
-      });
-    }
+      if (alturaNumero < 100 || alturaNumero > 250) {
+        mostrarErro("Enter your height in centimeters. Example: 175");
+        return;
+      }
+
+      const alturaM = alturaNumero / 100;
+      const imc = (pesoNumero / (alturaM * alturaM)).toFixed(1);
+
+      salvar("nome", nomeValor);
+      salvar("idade", idadeValor);
+      salvar("sexo", sexoValor);
+      salvar("peso", pesoValor);
+      salvar("altura", alturaValor);
+      salvar("imc", imc);
+
+      irPara(ROTAS.bficha);
+    });
   }
 
   function configurarPaginaObjetivo() {
@@ -177,21 +220,21 @@
       salvar("diasTreino", valor);
     });
 
-    if (btnContinuarObjetivo) {
-      btnContinuarObjetivo.addEventListener("click", () => {
-        if (!objetivoSelecionado) {
-          alert("Selecione seu objetivo.");
-          return;
-        }
+    if (!btnContinuarObjetivo) return;
 
-        if (!diasSelecionados) {
-          alert("Selecione quantos dias você treina.");
-          return;
-        }
+    btnContinuarObjetivo.addEventListener("click", () => {
+      if (!objetivoSelecionado) {
+        mostrarErro("Please select your main goal.");
+        return;
+      }
 
-        irPara(ROTAS.cobjetivo);
-      });
-    }
+      if (!diasSelecionados) {
+        mostrarErro("Please select how many days per week you train.");
+        return;
+      }
+
+      irPara(ROTAS.cobjetivo);
+    });
   }
 
   function configurarPaginaSaude() {
@@ -208,6 +251,7 @@
 
       if (campoDetalhe) {
         campoDetalhe.value = detalheSalvo;
+        campoDetalhe.style.display = "none";
       }
 
       if (valorSalvo) {
@@ -220,21 +264,22 @@
 
       botoes.forEach((botao) => {
         botao.addEventListener("click", () => {
-          const valor = botao.dataset.value || botao.textContent.trim();
+          const valor = valorBotao(botao);
 
           botoes.forEach((b) => b.classList.remove("ativo"));
           botao.classList.add("ativo");
 
           salvar(nomeGrupo, valor);
 
-          if (campoDetalhe) {
-            if (normalizar(valor) === "sim") {
-              campoDetalhe.style.display = "block";
-            } else {
-              campoDetalhe.style.display = "none";
-              campoDetalhe.value = "";
-              salvar(`${nomeGrupo}Detalhe`, "");
-            }
+          if (!campoDetalhe) return;
+
+          if (normalizar(valor) === "sim") {
+            campoDetalhe.style.display = "block";
+            campoDetalhe.focus();
+          } else {
+            campoDetalhe.style.display = "none";
+            campoDetalhe.value = "";
+            salvar(`${nomeGrupo}Detalhe`, "");
           }
         });
       });
@@ -246,28 +291,28 @@
       }
     });
 
-    if (btnContinuarSaude) {
-      btnContinuarSaude.addEventListener("click", () => {
-        const obrigatorios = ["lesao", "dor", "limitacao", "cirurgia"];
+    if (!btnContinuarSaude) return;
 
-        for (const chave of obrigatorios) {
-          const resposta = pegar(chave, "");
-          const detalhe = pegar(`${chave}Detalhe`, "");
+    btnContinuarSaude.addEventListener("click", () => {
+      const obrigatorios = ["lesao", "dor", "limitacao", "cirurgia"];
 
-          if (!resposta) {
-            alert("Responda todas as perguntas de saúde.");
-            return;
-          }
+      for (const chave of obrigatorios) {
+        const resposta = pegar(chave, "");
+        const detalhe = pegar(`${chave}Detalhe`, "");
 
-          if (normalizar(resposta) === "sim" && !detalhe) {
-            alert("Preencha o detalhe das respostas marcadas como Sim.");
-            return;
-          }
+        if (!resposta) {
+          mostrarErro("Please answer all health and safety questions.");
+          return;
         }
 
-        irPara(ROTAS.dsaude);
-      });
-    }
+        if (normalizar(resposta) === "sim" && !detalhe) {
+          mostrarErro("Please add details for the answers marked as Yes.");
+          return;
+        }
+      }
+
+      irPara(ROTAS.dsaude);
+    });
   }
 
   function configurarPaginaEquipamento() {
@@ -291,21 +336,21 @@
       salvar("nivelTreino", valor);
     });
 
-    if (btnContinuarEquipamento) {
-      btnContinuarEquipamento.addEventListener("click", () => {
-        if (!localSelecionado) {
-          alert("Selecione onde você treina.");
-          return;
-        }
+    if (!btnContinuarEquipamento) return;
 
-        if (!nivelSelecionado) {
-          alert("Selecione seu nível.");
-          return;
-        }
+    btnContinuarEquipamento.addEventListener("click", () => {
+      if (!localSelecionado) {
+        mostrarErro("Please select where you work out.");
+        return;
+      }
 
-        irPara(ROTAS.eequipamento);
-      });
-    }
+      if (!nivelSelecionado) {
+        mostrarErro("Please select your fitness level.");
+        return;
+      }
+
+      irPara(ROTAS.eequipamento);
+    });
   }
 
   function configurarPaginaAlimentacao() {
@@ -329,21 +374,21 @@
       salvar("refeicoesDia", valor);
     });
 
-    if (btnContinuarAlimentacao) {
-      btnContinuarAlimentacao.addEventListener("click", () => {
-        if (!alimentacaoSelecionada) {
-          alert("Selecione como está sua alimentação.");
-          return;
-        }
+    if (!btnContinuarAlimentacao) return;
 
-        if (!refeicoesSelecionadas) {
-          alert("Selecione quantas refeições você faz por dia.");
-          return;
-        }
+    btnContinuarAlimentacao.addEventListener("click", () => {
+      if (!alimentacaoSelecionada) {
+        mostrarErro("Please select how your nutrition is right now.");
+        return;
+      }
 
-        irPara(ROTAS.falimentacao);
-      });
-    }
+      if (!refeicoesSelecionadas) {
+        mostrarErro("Please select how many meals you eat per day.");
+        return;
+      }
+
+      irPara(ROTAS.falimentacao);
+    });
   }
 
   function configurarPaginaEstiloVida() {
@@ -375,33 +420,39 @@
       salvar("rotina", valor);
     });
 
-    if (btnContinuarEstilo) {
-      btnContinuarEstilo.addEventListener("click", () => {
-        if (!sonoSelecionado) {
-          alert("Selecione quantas horas você dorme.");
-          return;
-        }
+    if (!btnContinuarEstilo) return;
 
-        if (!estresseSelecionado) {
-          alert("Selecione seu nível de estresse.");
-          return;
-        }
+    btnContinuarEstilo.addEventListener("click", () => {
+      if (!sonoSelecionado) {
+        mostrarErro("Please select how many hours you sleep.");
+        return;
+      }
 
-        if (!rotinaSelecionada) {
-          alert("Selecione como é sua rotina.");
-          return;
-        }
+      if (!estresseSelecionado) {
+        mostrarErro("Please select your stress level.");
+        return;
+      }
 
-        irPara(ROTAS.gestilovida);
-      });
-    }
+      if (!rotinaSelecionada) {
+        mostrarErro("Please select what your daily routine is like.");
+        return;
+      }
+
+      irPara(ROTAS.gestilovida);
+    });
   }
 
-  if (pagina === "index") configurarPaginaIndex();
-  if (pagina === "bficha") configurarPaginaFicha();
-  if (pagina === "cobjetivo") configurarPaginaObjetivo();
-  if (pagina === "dsaude") configurarPaginaSaude();
-  if (pagina === "eequipamento") configurarPaginaEquipamento();
-  if (pagina === "falimentacao") configurarPaginaAlimentacao();
-  if (pagina === "gestilovida") configurarPaginaEstiloVida();
+  const CONFIGURAR_PAGINA = {
+    index: configurarPaginaIndex,
+    bficha: configurarPaginaFicha,
+    cobjetivo: configurarPaginaObjetivo,
+    dsaude: configurarPaginaSaude,
+    eequipamento: configurarPaginaEquipamento,
+    falimentacao: configurarPaginaAlimentacao,
+    gestilovida: configurarPaginaEstiloVida
+  };
+
+  if (CONFIGURAR_PAGINA[pagina]) {
+    CONFIGURAR_PAGINA[pagina]();
+  }
 });

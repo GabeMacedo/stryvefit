@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saúde e Segurança | STRYVEFIT</title>
+
+  <title>Health & Safety | STRYVEFIT</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
@@ -14,91 +16,110 @@
 
   <link rel="stylesheet" href="dsaude.css" />
 </head>
+
 <body data-pagina="dsaude">
 
   <section class="hero">
     <div class="hero-overlay"></div>
 
     <div class="overlay">
-      <span class="etapa">ETAPA 4 DE 8</span>
+
+      <span class="etapa">STEP 4 OF 8</span>
 
       <h1 class="titulo">
-        Vamos cuidar da sua <span>segurança</span>
+        Let’s take care of your <span>safety</span>
       </h1>
 
       <p class="descricao">
-        Essas respostas ajudam a montar um treino mais seguro, inteligente e adaptado para você.
+        These answers help create a safer, smarter, and more personalized workout plan for you.
       </p>
 
       <div class="saude-box">
 
         <div class="card-pergunta">
-          <h2 class="pergunta">Você tem alguma lesão?</h2>
+
+          <h2 class="pergunta">
+            Do you have any injuries?
+          </h2>
 
           <div class="opcoes-saude" data-grupo="lesao">
-            <button type="button" data-value="Sim">Sim</button>
-            <button type="button" data-value="Não">Não</button>
+            <button type="button" data-value="Sim">Yes</button>
+            <button type="button" data-value="Não">No</button>
           </div>
 
           <textarea
             id="campo-lesao"
             class="campo-detalhe"
-            placeholder="Ex: lesão no ombro, joelho, lombar..."
+            placeholder="Example: shoulder, knee, or lower back injury..."
           ></textarea>
+
         </div>
 
         <div class="card-pergunta">
-          <h2 class="pergunta">Você sente dor em alguma parte do corpo?</h2>
+
+          <h2 class="pergunta">
+            Do you feel pain in any part of your body?
+          </h2>
 
           <div class="opcoes-saude" data-grupo="dor">
-            <button type="button" data-value="Sim">Sim</button>
-            <button type="button" data-value="Não">Não</button>
+            <button type="button" data-value="Sim">Yes</button>
+            <button type="button" data-value="Não">No</button>
           </div>
 
           <textarea
             id="campo-dor"
             class="campo-detalhe"
-            placeholder="Ex: dor no joelho, ombro, costas..."
+            placeholder="Example: knee, shoulder, or back pain..."
           ></textarea>
+
         </div>
 
         <div class="card-pergunta">
-          <h2 class="pergunta">Tem alguma doença ou limitação física?</h2>
+
+          <h2 class="pergunta">
+            Do you have any disease or physical limitation?
+          </h2>
 
           <div class="opcoes-saude" data-grupo="limitacao">
-            <button type="button" data-value="Sim">Sim</button>
-            <button type="button" data-value="Não">Não</button>
+            <button type="button" data-value="Sim">Yes</button>
+            <button type="button" data-value="Não">No</button>
           </div>
 
           <textarea
             id="campo-limitacao"
             class="campo-detalhe"
-            placeholder="Ex: pressão alta, escoliose, limitação no movimento..."
+            placeholder="Example: high blood pressure, scoliosis, movement limitation..."
           ></textarea>
+
         </div>
 
         <div class="card-pergunta">
-          <h2 class="pergunta">Você já fez alguma cirurgia?</h2>
+
+          <h2 class="pergunta">
+            Have you had any surgery before?
+          </h2>
 
           <div class="opcoes-saude" data-grupo="cirurgia">
-            <button type="button" data-value="Sim">Sim</button>
-            <button type="button" data-value="Não">Não</button>
+            <button type="button" data-value="Sim">Yes</button>
+            <button type="button" data-value="Não">No</button>
           </div>
 
           <textarea
             id="campo-cirurgia"
             class="campo-detalhe"
-            placeholder="Ex: cirurgia no joelho, coluna, ombro..."
+            placeholder="Example: knee, spine, or shoulder surgery..."
           ></textarea>
+
         </div>
 
         <button class="botao" id="btnContinuarSaude" type="button">
-          CONTINUAR
+          CONTINUE
         </button>
 
         <p class="texto-ajuda">
-          Isso é importante para evitar erros e deixar sua recomendação mais segura.
+          This is important to avoid mistakes and make your recommendation safer and more personalized.
         </p>
+
       </div>
     </div>
   </section>
