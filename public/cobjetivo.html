@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seu Objetivo | STRYVEFIT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="cobjetivo.css" />
+</head>
+<body data-pagina="cobjetivo">
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="overlay">
+      <span class="etapa">ETAPA 3 DE 8</span>
+
+      <h1 class="titulo">
+        Agora vamos definir seu <span>objetivo</span>
+      </h1>
+
+      <p class="descricao">
+        Isso ajuda a direcionar melhor o tipo de treino, intensidade e estratégia inicial.
+      </p>
+
+      <div class="objetivo-box">
+        <h2 class="subtitulo">Qual é o seu <span>objetivo principal</span>?</h2>
+
+        <div class="opcoes" id="objetivoOpcoes">
+          <button type="button" data-value="emagrecer">Emagrecer</button>
+          <button type="button" data-value="ganhar-massa">Ganhar massa muscular</button>
+          <button type="button" data-value="definir">Definir o corpo</button>
+          <button type="button" data-value="condicionamento">Melhorar condicionamento</button>
+        </div>
+
+        <h2 class="subtitulo dias-titulo">Quantos dias por semana você <span>treina</span>?</h2>
+
+        <div class="dias" id="diasOpcoes">
+          <button type="button" data-value="1">1 dia</button>
+          <button type="button" data-value="2">2 dias</button>
+          <button type="button" data-value="3">3 dias</button>
+          <button type="button" data-value="4">4 dias</button>
+          <button type="button" data-value="5">5 dias</button>
+          <button type="button" data-value="6">6 dias</button>
+          <button type="button" data-value="7">7 dias</button>
+        </div>
+
+        <button class="botao" id="btnContinuarObjetivo" type="button">
+          CONTINUAR
+        </button>
+
+        <p class="texto-ajuda">
+          Quanto mais clara essa base, mais forte fica a personalização do seu plano.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

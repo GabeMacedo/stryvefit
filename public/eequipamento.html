@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrutura de Treino | STRYVEFIT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="eequipamento.css" />
+</head>
+<body data-pagina="eequipamento">
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="overlay">
+      <span class="etapa">ETAPA 5 DE 8</span>
+
+      <h1 class="titulo">
+        Agora vamos ajustar sua <span>estrutura</span>
+      </h1>
+
+      <p class="descricao">
+        Isso ajuda a definir quais exercícios fazem mais sentido para a sua realidade e para o seu nível atual.
+      </p>
+
+      <div class="equipamento-box">
+        <h2 class="subtitulo">Onde você <span>treina</span>?</h2>
+
+        <div class="opcoes" id="localTreinoOpcoes">
+          <button type="button" data-value="academia">Academia</button>
+          <button type="button" data-value="casa">Em casa</button>
+          <button type="button" data-value="academia-casa">Academia + casa</button>
+          <button type="button" data-value="ar-livre">Ao ar livre</button>
+        </div>
+
+        <h2 class="subtitulo nivel-titulo">Qual é o seu <span>nível</span>?</h2>
+
+        <div class="nivel" id="nivelTreinoOpcoes">
+          <button type="button" data-value="iniciante">Iniciante</button>
+          <button type="button" data-value="intermediario">Intermediário</button>
+          <button type="button" data-value="avancado">Avançado</button>
+        </div>
+
+        <button class="botao" id="btnContinuarEquipamento" type="button">
+          CONTINUAR
+        </button>
+
+        <p class="texto-ajuda">
+          Seu plano fica muito melhor quando combina com o ambiente e com a sua experiência atual.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

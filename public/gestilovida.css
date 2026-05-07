@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #0f0f10;
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.82);
+  --text-muted: rgba(255, 255, 255, 0.62);
+  --orange: #ff7a1a;
+  --orange-strong: #ff6a00;
+  --orange-2: #ff9a1f;
+  --stroke: rgba(255, 255, 255, 0.10);
+  --shadow-card: 0 14px 34px rgba(0, 0, 0, 0.28);
+  --shadow-orange: 0 16px 34px rgba(255, 106, 0, 0.28);
+  --radius-xl: 22px;
+  --radius-lg: 18px;
+  --radius-sm: 14px;
+  --pill: 999px;
+  --transition: 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 14px;
+  background: url("img/transferir (4).jpg") center center / cover no-repeat;
+  overflow: hidden;
+}
+
+.hero-overlay,
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at top right, rgba(255, 122, 26, 0.12), transparent 30%),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.16),
+      rgba(0, 0, 0, 0.34),
+      rgba(0, 0, 0, 0.62),
+      rgba(0, 0, 0, 0.92)
+    );
+}
+
+.overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.etapa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: var(--pill);
+  background: rgba(255, 122, 26, 0.10);
+  border: 1px solid rgba(255, 122, 26, 0.24);
+  color: #ffb37a;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.titulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.9px;
+  margin-bottom: 10px;
+}
+
+.titulo span,
+.subtitulo span {
+  color: var(--orange);
+}
+
+.descricao {
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.estilo-box {
+  width: 100%;
+  padding: 18px;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+    rgba(12, 12, 12, 0.58);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
+}
+
+.subtitulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.bloco-titulo {
+  margin-top: 24px;
+}
+
+.horas-sono,
+.estresse,
+.trabalho {
+  display: grid;
+  width: 100%;
+  gap: 10px;
+}
+
+.horas-sono {
+  grid-template-columns: 1fr 1fr;
+}
+
+.estresse,
+.trabalho {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.horas-sono button,
+.estresse button,
+.trabalho button {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 16px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+.horas-sono button:hover,
+.estresse button:hover,
+.trabalho button:hover {
+  border-color: var(--orange);
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.08);
+}
+
+.horas-sono button,
+.estresse button,
+.trabalho button {
+  min-height: 54px;
+}
+
+.ativo {
+  background: linear-gradient(135deg, var(--orange-strong), var(--orange-2)) !important;
+  color: #fff !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 10px 25px rgba(255,106,0,0.30);
+}
+
+.botao {
+  margin-top: 24px;
+  width: 100%;
+  padding: 17px 14px;
+  border-radius: var(--pill);
+  border: none;
+  background: linear-gradient(135deg, var(--orange-strong), var(--orange-2));
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition:
+    transform var(--transition),
+    filter var(--transition),
+    box-shadow var(--transition);
+  box-shadow: var(--shadow-orange);
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 20px 40px rgba(255,106,0,0.34);
+}
+
+.botao:active {
+  transform: scale(0.98);
+}
+
+.texto-ajuda {
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 100vh;
+    padding: 16px 10px;
+  }
+
+  .overlay {
+    max-width: 100%;
+  }
+
+  .etapa {
+    font-size: 10px;
+    padding: 5px 9px;
+    margin-bottom: 10px;
+  }
+
+  .titulo {
+    font-size: 26px;
+    line-height: 1.10;
+    margin-bottom: 8px;
+  }
+
+  .descricao {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .subtitulo {
+    font-size: 18px;
+  }
+
+  .estilo-box {
+    padding: 14px;
+    border-radius: var(--radius-lg);
+  }
+
+  .horas-sono,
+  .estresse,
+  .trabalho {
+    gap: 8px;
+  }
+
+  .horas-sono button,
+  .estresse button,
+  .trabalho button {
+    padding: 13px 10px;
+    font-size: 13px;
+    min-height: 50px;
+  }
+
+  .botao {
+    margin-top: 22px;
+    padding: 15px 12px;
+    font-size: 15px;
+  }
+
+  .texto-ajuda {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  .titulo {
+    font-size: 23px;
+  }
+
+  .descricao {
+    font-size: 12px;
+  }
+
+  .subtitulo {
+    font-size: 16px;
+  }
+
+  .estilo-box {
+    padding: 12px;
+  }
+
+  .horas-sono button,
+  .estresse button,
+  .trabalho button {
+    font-size: 12px;
+    min-height: 46px;
+    padding: 12px 8px;
+  }
+
+  .botao {
+    font-size: 14px;
+    padding: 14px 10px;
+  }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saúde e Segurança | STRYVEFIT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="dsaude.css" />
+</head>
+<body data-pagina="dsaude">
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="overlay">
+      <span class="etapa">ETAPA 4 DE 8</span>
+
+      <h1 class="titulo">
+        Vamos cuidar da sua <span>segurança</span>
+      </h1>
+
+      <p class="descricao">
+        Essas respostas ajudam a montar um treino mais seguro, inteligente e adaptado para você.
+      </p>
+
+      <div class="saude-box">
+
+        <div class="card-pergunta">
+          <h2 class="pergunta">Você tem alguma lesão?</h2>
+
+          <div class="opcoes-saude" data-grupo="lesao">
+            <button type="button" data-value="Sim">Sim</button>
+            <button type="button" data-value="Não">Não</button>
+          </div>
+
+          <textarea
+            id="campo-lesao"
+            class="campo-detalhe"
+            placeholder="Ex: lesão no ombro, joelho, lombar..."
+          ></textarea>
+        </div>
+
+        <div class="card-pergunta">
+          <h2 class="pergunta">Você sente dor em alguma parte do corpo?</h2>
+
+          <div class="opcoes-saude" data-grupo="dor">
+            <button type="button" data-value="Sim">Sim</button>
+            <button type="button" data-value="Não">Não</button>
+          </div>
+
+          <textarea
+            id="campo-dor"
+            class="campo-detalhe"
+            placeholder="Ex: dor no joelho, ombro, costas..."
+          ></textarea>
+        </div>
+
+        <div class="card-pergunta">
+          <h2 class="pergunta">Tem alguma doença ou limitação física?</h2>
+
+          <div class="opcoes-saude" data-grupo="limitacao">
+            <button type="button" data-value="Sim">Sim</button>
+            <button type="button" data-value="Não">Não</button>
+          </div>
+
+          <textarea
+            id="campo-limitacao"
+            class="campo-detalhe"
+            placeholder="Ex: pressão alta, escoliose, limitação no movimento..."
+          ></textarea>
+        </div>
+
+        <div class="card-pergunta">
+          <h2 class="pergunta">Você já fez alguma cirurgia?</h2>
+
+          <div class="opcoes-saude" data-grupo="cirurgia">
+            <button type="button" data-value="Sim">Sim</button>
+            <button type="button" data-value="Não">Não</button>
+          </div>
+
+          <textarea
+            id="campo-cirurgia"
+            class="campo-detalhe"
+            placeholder="Ex: cirurgia no joelho, coluna, ombro..."
+          ></textarea>
+        </div>
+
+        <button class="botao" id="btnContinuarSaude" type="button">
+          CONTINUAR
+        </button>
+
+        <p class="texto-ajuda">
+          Isso é importante para evitar erros e deixar sua recomendação mais segura.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sua Ficha | STRYVEFIT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="bficha.css" />
+</head>
+<body data-pagina="bficha">
+
+  <section class="hero hero-ficha">
+    <div class="hero-overlay"></div>
+
+    <div class="overlay">
+      <span class="etapa">ETAPA 2 DE 8</span>
+
+      <h1 class="titulo">
+        Vamos entender seu <span>corpo</span>
+      </h1>
+
+      <p class="descricao">
+        Leva menos de 20 segundos. Com isso, já conseguimos montar uma base mais inteligente para o seu plano.
+      </p>
+
+      <div class="ficha-box">
+        <div class="grupo-form">
+          <label for="nome">Seu nome</label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Digite seu nome"
+            autocomplete="name"
+            inputmode="text"
+          />
+        </div>
+
+        <div class="duas-colunas">
+          <div class="grupo-form">
+            <label for="idade">Idade</label>
+            <input
+              type="number"
+              id="idade"
+              name="idade"
+              placeholder="Ex: 21"
+              min="10"
+              max="100"
+              inputmode="numeric"
+            />
+          </div>
+
+          <div class="grupo-form">
+            <label for="sexo">Sexo</label>
+            <select id="sexo" name="sexo" autocomplete="sex">
+              <option value="">Selecione</option>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="duas-colunas">
+          <div class="grupo-form">
+            <label for="peso">Peso (kg)</label>
+            <input
+              type="number"
+              id="peso"
+              name="peso"
+              placeholder="Ex: 72"
+              min="20"
+              max="300"
+              step="0.1"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="grupo-form">
+            <label for="altura">Altura (cm)</label>
+            <input
+              type="number"
+              id="altura"
+              name="altura"
+              placeholder="Ex: 175"
+              min="100"
+              max="250"
+              inputmode="numeric"
+            />
+          </div>
+        </div>
+
+        <button class="botao" id="btnContinuarFicha" type="button">
+          CONTINUAR
+        </button>
+
+        <p class="texto-ajuda">
+          Seus dados são usados apenas para personalizar sua recomendação inicial.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #0f0f10;
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.86);
+  --text-muted: rgba(255, 255, 255, 0.70);
+  --orange: #ff7a1a;
+  --orange-strong: #ff6a00;
+  --orange-2: #ff9a1f;
+  --orange-soft: rgba(255, 122, 26, 0.14);
+  --stroke: rgba(255, 255, 255, 0.12);
+  --glass: rgba(255, 255, 255, 0.08);
+  --shadow-orange: 0 18px 42px rgba(255, 106, 0, 0.28);
+  --shadow-deep: 0 18px 60px rgba(0, 0, 0, 0.32);
+  --radius-pill: 999px;
+  --transition: 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow: hidden;
+  background:
+    url("img/Strong Female Fitness Aesthetic _ Women Gym Motivation Inspiration.jpg")
+    center center / cover no-repeat;
+}
+
+/* OVERLAY */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at top center, rgba(255, 122, 26, 0.08), transparent 28%),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.12) 0%,
+      rgba(0, 0, 0, 0.20) 18%,
+      rgba(0, 0, 0, 0.34) 40%,
+      rgba(0, 0, 0, 0.58) 68%,
+      rgba(0, 0, 0, 0.90) 100%
+    );
+}
+
+/* CONTEÚDO */
+.overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 460px;
+  min-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  padding: 28px 8px 38px;
+}
+
+/* BADGE */
+.top-badge {
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+/* TÍTULO */
+.titulo {
+  max-width: 390px;
+  margin-bottom: 16px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -1.3px;
+  color: var(--text);
+
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.34);
+}
+
+.titulo span {
+  color: var(--orange);
+}
+
+/* SUBTÍTULO */
+.subtitulo {
+  max-width: 350px;
+  margin-bottom: 12px;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+/* TEXTO PEQUENO */
+.tempo {
+  margin-bottom: 28px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #ffb37a;
+}
+
+/* BOTÃO */
+.botao {
+  width: 100%;
+  max-width: 325px;
+  min-height: 62px;
+  padding: 0 20px;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+
+  background: linear-gradient(135deg, var(--orange-strong), var(--orange-2));
+  color: var(--text);
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+
+  box-shadow: var(--shadow-orange), inset 0 1px 0 rgba(255,255,255,0.10);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    filter var(--transition);
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 50px rgba(255, 106, 0, 0.34);
+  filter: brightness(1.03);
+}
+
+.botao:active {
+  transform: scale(0.985);
+}
+
+.botao:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.42);
+  outline-offset: 4px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+  .hero {
+    padding: 20px 12px;
+  }
+
+  .overlay {
+    padding: 22px 6px 32px;
+  }
+
+  .titulo {
+    font-size: 35px;
+    max-width: 340px;
+  }
+
+  .subtitulo {
+    font-size: 14px;
+    max-width: 310px;
+  }
+
+  .botao {
+    max-width: 300px;
+    min-height: 58px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero {
+    padding: 18px 12px;
+    background-position: center center;
+  }
+
+  .overlay {
+    min-height: calc(100vh - 36px);
+    padding: 18px 4px 26px;
+  }
+
+  .top-badge {
+    font-size: 10px;
+    padding: 7px 12px;
+    margin-bottom: 16px;
+  }
+
+  .titulo {
+    font-size: 31px;
+    line-height: 1.08;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+    max-width: 310px;
+  }
+
+  .subtitulo {
+    font-size: 13.5px;
+    line-height: 1.55;
+    max-width: 290px;
+    margin-bottom: 10px;
+  }
+
+  .tempo {
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+
+  .botao {
+    max-width: 285px;
+    min-height: 56px;
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 360px) {
+  .titulo {
+    font-size: 28px;
+    max-width: 280px;
+  }
+
+  .subtitulo {
+    font-size: 13px;
+    max-width: 270px;
+  }
+
+  .botao {
+    font-size: 16px;
+    min-height: 54px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    background-position: center top;
+  }
+
+  .overlay {
+    max-width: 560px;
+    padding-bottom: 44px;
+  }
+
+  .top-badge {
+    font-size: 12px;
+  }
+
+  .titulo {
+    font-size: 52px;
+    max-width: 500px;
+  }
+
+  .subtitulo {
+    font-size: 17px;
+    max-width: 410px;
+  }
+
+  .tempo {
+    font-size: 14px;
+  }
+
+  .botao {
+    max-width: 340px;
+    min-height: 64px;
+    font-size: 21px;
+  }
+}

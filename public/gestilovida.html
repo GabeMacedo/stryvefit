@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estilo de Vida | STRYVEFIT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="gestilovida.css" />
+</head>
+<body data-pagina="gestilovida">
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="overlay">
+      <span class="etapa">ETAPA 7 DE 8</span>
+
+      <h1 class="titulo">
+        Seu <span>estilo de vida</span>
+      </h1>
+
+      <p class="descricao">
+        Seu resultado também depende da sua rotina, do seu sono e do quanto seu corpo consegue se recuperar.
+      </p>
+
+      <div class="estilo-box">
+        <h2 class="subtitulo">Quantas horas você <span>dorme</span> por noite?</h2>
+
+        <div class="horas-sono" id="horasSonoOpcoes">
+          <button type="button" data-value="menos-5">Menos de 5h</button>
+          <button type="button" data-value="5-6">5 a 6h</button>
+          <button type="button" data-value="7-8">7 a 8h</button>
+          <button type="button" data-value="mais-8">Mais de 8h</button>
+        </div>
+
+        <h2 class="subtitulo bloco-titulo">Como está seu nível de <span>estresse</span>?</h2>
+
+        <div class="estresse" id="estresseOpcoes">
+          <button type="button" data-value="baixo">Baixo</button>
+          <button type="button" data-value="medio">Médio</button>
+          <button type="button" data-value="alto">Alto</button>
+        </div>
+
+        <h2 class="subtitulo bloco-titulo">Como é sua <span>rotina</span>?</h2>
+
+        <div class="trabalho" id="rotinaOpcoes">
+          <button type="button" data-value="parado">Mais parado</button>
+          <button type="button" data-value="moderado">Moderada</button>
+          <button type="button" data-value="corrida">Corrida / puxada</button>
+        </div>
+
+        <button class="botao" id="btnContinuarEstilo" type="button">
+          CONTINUAR
+        </button>
+
+        <p class="texto-ajuda">
+          Esse passo ajuda a ajustar recuperação, intensidade e expectativa de resultado.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
